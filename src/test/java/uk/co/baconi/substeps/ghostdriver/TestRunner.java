@@ -17,6 +17,7 @@ package uk.co.baconi.substeps.ghostdriver;
 import com.technophobia.substeps.runner.JunitFeatureRunner;
 import com.technophobia.substeps.runner.JunitFeatureRunner.SubStepsConfiguration;
 import com.technophobia.webdriver.substeps.impl.BaseWebdriverSubStepImplementations;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 
 @SubStepsConfiguration(
@@ -28,5 +29,6 @@ import org.junit.runner.RunWith;
         }
 )
 @RunWith(JunitFeatureRunner.class)
+@Ignore
 public class TestRunner {
 }
