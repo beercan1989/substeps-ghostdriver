@@ -11,14 +11,5 @@ Project to provide an integration to PhtantomJS via RemoteWebDriver for use with
 + Substeps 1.1.2
 + PhantomJS 1.9.8
 
-## Latest version available in Maven Central
-```xml
-<dependency>
-    <groupId>uk.co.baconi.substeps</groupId>
-    <artifactId>ghostdriver-substeps</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-</dependency>
-```
-
 ## Features coming up in 0.0.1
 + Ability to use PhantomJS instead of Chrome or Firefox with webdriver-substeps
