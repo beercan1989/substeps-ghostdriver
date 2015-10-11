@@ -1,4 +1,4 @@
-# Substeps RestDriver [![Build Status](https://travis-ci.org/beercan1989/substeps-ghostdriver.svg?branch=master)](https://travis-ci.org/beercan1989/substeps-ghostdriver)
+# Substeps GhostDriver [![Build Status](https://travis-ci.org/beercan1989/substeps-ghostdriver.svg?branch=master)](https://travis-ci.org/beercan1989/substeps-ghostdriver)
 
 Project to provide an integration to PhtantomJS via RemoteWebDriver for use within Substeps, as a replacement for WebDriver. 
 
