@@ -29,6 +29,5 @@ import org.junit.runner.RunWith;
         }
 )
 @RunWith(JunitFeatureRunner.class)
-@Ignore
 public class TestRunner {
 }

@@ -31,45 +31,14 @@ import java.util.Optional;
 
 public class GhostDriverFactory implements WebDriverFactory {
 
-    private static final Logger LOG = LoggerFactory.getLogger(GhostDriverFactory.class);
-
-    private final Optional<WebDriverFactory> fallbackFactory;
-    private final boolean phantomJsDriverRequested;
-
-    public GhostDriverFactory() {
-
-        final String driverType = GhostDriverSubstepsConfiguration.PROPERTIES.getDriverType();
-        phantomJsDriverRequested = driverType != null && driverType.trim().equals("PHANTOMJS");
-
-        if(phantomJsDriverRequested){
-            fallbackFactory = Optional.empty();
-        } else {
-            final Class<? extends WebDriverFactory> fallback = GhostDriverSubstepsConfiguration.PROPERTIES.getFallbackFactory();
-            try {
-                fallbackFactory = Optional.of(fallback.newInstance());
-            } catch (final InstantiationException | IllegalAccessException e) {
-                throw new RuntimeException("No fallback webdriver factory available.", e);
-            }
-        }
-
-    }
-
     @Override
     public WebDriver createWebDriver() {
-        if (phantomJsDriverRequested) {
-            return createGhostDriver();
-        } else {
-            return fallbackFactory.get().createWebDriver();
-        }
+        return createGhostDriver();
     }
 
     @Override
     public DriverType driverType() {
-        if (phantomJsDriverRequested) {
-            return () -> true;
-        } else {
-            return fallbackFactory.get().driverType();
-        }
+        return () -> true;
     }
 
     private WebDriver createGhostDriver() {

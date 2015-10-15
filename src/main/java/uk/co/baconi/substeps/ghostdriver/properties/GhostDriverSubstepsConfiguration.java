@@ -14,7 +14,6 @@
 
 package uk.co.baconi.substeps.ghostdriver.properties;
 
-import com.technophobia.webdriver.substeps.runner.WebDriverFactory;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
@@ -31,10 +30,6 @@ public enum GhostDriverSubstepsConfiguration {
      * All properties under "substeps.driver", including environment specific if available.
      */
     private final Config properties;
-
-    // GhostDriver Substeps Properties
-    private final Class<? extends WebDriverFactory> fallbackFactory;
-    private final String driverType;
 
     // GhostDriver extra Capabilities
     private final Map<String, Object> phantomJsPageSettings;
@@ -63,32 +58,16 @@ public enum GhostDriverSubstepsConfiguration {
             properties = ConfigFactory.load();
         }
 
-        this.driverType = properties.getString("substeps.driver.webdriver.driverType");
-
-        try {
-            fallbackFactory = Class.forName(properties.getString("substeps.driver.ghost.fallback.factory")).asSubclass(WebDriverFactory.class);
-        } catch (final ClassNotFoundException e) {
-            throw new IllegalStateException("'substeps.driver.ghost.fallback.factory' is invalid.", e);
-        }
-
-        phantomJsPageSettings = propertyPathToMap(properties, "phantomjs.page.settings");
-        phantomJsPageCustomHeaders = propertyPathToMap(properties, "phantomjs.page.customHeaders");
-        phantomJsBinaryPath = getOptionalString(properties, "phantomjs.binary.path");
-        phantomJsBinaryCliArgs = getOptionalString(properties, "phantomjs.cli.args");
-        phantomJsGhostDriverPath = getOptionalString(properties, "phantomjs.ghostdriver.path");
-        phantomJsGhostDriverCliArgs = getOptionalString(properties, "phantomjs.ghostdriver.cli.args");
+        this.phantomJsPageSettings = propertyPathToMap(properties, "phantomjs.page.settings");
+        this.phantomJsPageCustomHeaders = propertyPathToMap(properties, "phantomjs.page.customHeaders");
+        this.phantomJsBinaryPath = getOptionalString(properties, "phantomjs.binary.path");
+        this.phantomJsBinaryCliArgs = getOptionalString(properties, "phantomjs.cli.args");
+        this.phantomJsGhostDriverPath = getOptionalString(properties, "phantomjs.ghostdriver.path");
+        this.phantomJsGhostDriverCliArgs = getOptionalString(properties, "phantomjs.ghostdriver.cli.args");
     }
 
     public Config getProperties() {
         return properties;
-    }
-
-    public Class<? extends WebDriverFactory> getFallbackFactory() {
-        return fallbackFactory;
-    }
-
-    public String getDriverType() {
-        return driverType;
     }
 
     public Map<String, Object> getPhantomJsPageSettings() {
