@@ -165,26 +165,6 @@
                             </target>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>download-phantomjs-windows</id>
-                        <phase>process-test-classes</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-
-                                <get src="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${phantomjs.version}-windows.zip"
-                                     dest="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-windows.zip"
-                                     verbose="false"
-                                     usetimestamp="true" />
-
-                                <unzip src="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-windows.zip"
-                                       dest="${project.build.testOutputDirectory}/" />
-
-                            </target>
-                        </configuration>
-                    </execution>
                 </executions>
             </plugin>
         </plugins>
@@ -239,7 +219,7 @@
             <activation>
                 <os>
                     <family>unix</family>
-                    <arch>x64</arch>
+                    <arch>amd64</arch>
                 </os>
             </activation>
 
@@ -284,7 +264,7 @@
             <activation>
                 <os>
                     <family>unix</family>
-                    <arch>x86</arch>
+                    <arch>i386</arch>
                 </os>
             </activation>
 
