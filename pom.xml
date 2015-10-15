@@ -235,19 +235,6 @@
         </profile>
 
         <profile>
-            <id>unix-32bit</id>
-            <activation>
-                <os>
-                    <family>unix</family>
-                    <arch>x86</arch>
-                </os>
-            </activation>
-            <properties>
-                <phantomjs.arc>i686</phantomjs.arc>
-            </properties>
-        </profile>
-
-        <profile>
             <id>unix-64bit</id>
             <activation>
                 <os>
@@ -255,21 +242,9 @@
                     <arch>x64</arch>
                 </os>
             </activation>
-            <properties>
-                <phantomjs.arc>x86_64</phantomjs.arc>
-            </properties>
-        </profile>
-
-        <profile>
-            <id>unix-master</id>
-            <activation>
-                <os>
-                    <family>unix</family>
-                </os>
-            </activation>
 
             <properties>
-                <phantomjs.path>${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-${phantomjs.arc}/phantomjs</phantomjs.path>
+                <phantomjs.path>${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-x86_64/phantomjs</phantomjs.path>
             </properties>
 
             <build>
@@ -279,7 +254,7 @@
                         <artifactId>maven-antrun-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>download-phantomjs-windows</id>
+                                <id>download-phantomjs-unix-64bit</id>
                                 <phase>process-test-classes</phase>
                                 <goals>
                                     <goal>run</goal>
@@ -287,12 +262,57 @@
                                 <configuration>
                                     <target>
 
-                                        <get src="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${phantomjs.version}-linux-${phantomjs.arc}.tar.bz2"
-                                             dest="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-${phantomjs.arc}.tar.bz2"
+                                        <get src="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${phantomjs.version}-linux-x86_64.tar.bz2"
+                                             dest="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-x86_64.tar.bz2"
                                              verbose="false"
                                              usetimestamp="true" />
 
-                                        <untar src="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-${phantomjs.arc}.tar.bz2"
+                                        <untar src="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-x86_64.tar.bz2"
+                                               dest="${project.build.testOutputDirectory}/" />
+
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>unix-32bit</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                    <arch>x86</arch>
+                </os>
+            </activation>
+
+            <properties>
+                <phantomjs.path>${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-i686/phantomjs</phantomjs.path>
+            </properties>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>download-phantomjs-unix-32bit</id>
+                                <phase>process-test-classes</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+
+                                        <get src="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${phantomjs.version}-linux-i686.tar.bz2"
+                                             dest="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-i686.tar.bz2"
+                                             verbose="false"
+                                             usetimestamp="true" />
+
+                                        <untar src="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-i686.tar.bz2"
                                                dest="${project.build.testOutputDirectory}/" />
 
                                     </target>
