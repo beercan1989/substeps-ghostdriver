@@ -172,7 +172,7 @@
 
     <profiles>
         <profile>
-            <id>windows</id>
+            <id>phantomjs-windows</id>
             <activation>
                 <os>
                     <family>windows</family>
@@ -205,6 +205,8 @@
                                         <unzip src="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-windows.zip"
                                                dest="${project.build.testOutputDirectory}/" />
 
+                                        <chmod file="${phantomjs.path}" perm="u+x" />
+
                                     </target>
                                 </configuration>
                             </execution>
@@ -215,7 +217,7 @@
         </profile>
 
         <profile>
-            <id>unix-64bit</id>
+            <id>phantomjs-unix-64bit</id>
             <activation>
                 <os>
                     <family>unix</family>
@@ -224,7 +226,7 @@
             </activation>
 
             <properties>
-                <phantomjs.path>${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-x86_64/phantomjs</phantomjs.path>
+                <phantomjs.path>${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-x86_64/bin/phantomjs</phantomjs.path>
             </properties>
 
             <build>
@@ -248,7 +250,9 @@
                                              usetimestamp="true" />
 
                                         <untar src="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-x86_64.tar.bz2"
-                                               dest="${project.build.testOutputDirectory}/" />
+                                               dest="${project.build.testOutputDirectory}/" compression="bzip2" />
+
+                                        <chmod file="${phantomjs.path}" perm="u+x" />
 
                                     </target>
                                 </configuration>
@@ -260,7 +264,7 @@
         </profile>
 
         <profile>
-            <id>unix-32bit</id>
+            <id>phantomjs-unix-32bit</id>
             <activation>
                 <os>
                     <family>unix</family>
@@ -269,7 +273,7 @@
             </activation>
 
             <properties>
-                <phantomjs.path>${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-i686/phantomjs</phantomjs.path>
+                <phantomjs.path>${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-i686/bin/phantomjs</phantomjs.path>
             </properties>
 
             <build>
@@ -293,10 +297,81 @@
                                              usetimestamp="true" />
 
                                         <untar src="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-i686.tar.bz2"
-                                               dest="${project.build.testOutputDirectory}/" />
+                                               dest="${project.build.testOutputDirectory}/" compression="bzip2" />
 
                                     </target>
                                 </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>skip-phantonjs-download-on-maven-test-skip</id>
+            <activation>
+                <property>
+                    <name>maven.test.skip</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>download-phantomjs-unix-32bit</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>download-phantomjs-unix-64bit</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>download-phantomjs-windows</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>download-ghostdriver</id>
+                                <phase>none</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>skip-phantonjs-download-on-skip-tests</id>
+            <activation>
+                <property>
+                    <name>skipTests</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>download-phantomjs-unix-32bit</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>download-phantomjs-unix-64bit</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>download-phantomjs-windows</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>download-ghostdriver</id>
+                                <phase>none</phase>
                             </execution>
                         </executions>
                     </plugin>
