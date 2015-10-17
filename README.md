@@ -10,6 +10,11 @@ Project to provide an integration to PhtantomJS via RemoteWebDriver for use with
 + Java 8
 + Substeps 1.1.2
 + PhantomJS 1.9.8
++ GhostDriver 1.1.0
 
 ## Features coming up in 0.0.1
 + Ability to use PhantomJS instead of Chrome or Firefox with webdriver-substeps
++ Configuration of PhantomJS via Typesafe Config
+    + CLI Arguments
+    + Page Settings
+    + Page Custom Headers
