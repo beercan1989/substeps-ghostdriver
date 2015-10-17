@@ -17,7 +17,7 @@
 
     <groupId>uk.co.baconi.substeps</groupId>
     <artifactId>ghostdriver-substeps</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>A ghost driver implementation for Substeps, to provide a means of using phantomjs via remote webdriver tools.</description>
@@ -33,7 +33,7 @@
         <connection>scm:git:git@github.com:beercan1989/substeps-ghostdriver.git</connection>
         <developerConnection>scm:git:git@github.com:beercan1989/substeps-ghostdriver.git</developerConnection>
         <url>git@github.com:beercan1989/substeps-ghostdriver.git</url>
-        <tag>HEAD</tag>
+        <tag>0.0.1</tag>
     </scm>
 
     <licenses>
@@ -148,13 +148,9 @@
                         <configuration>
                             <target>
 
-                                <get src="https://github.com/detro/ghostdriver/archive/${ghostdriver.version}.zip"
-                                     dest="${project.build.testOutputDirectory}/ghostdriver-${ghostdriver.version}.zip"
-                                     verbose="false"
-                                     usetimestamp="true" />
+                                <get src="https://github.com/detro/ghostdriver/archive/${ghostdriver.version}.zip" dest="${project.build.testOutputDirectory}/ghostdriver-${ghostdriver.version}.zip" verbose="false" usetimestamp="true" />
 
-                                <unzip src="${project.build.testOutputDirectory}/ghostdriver-${ghostdriver.version}.zip"
-                                       dest="${project.build.testOutputDirectory}/" />
+                                <unzip src="${project.build.testOutputDirectory}/ghostdriver-${ghostdriver.version}.zip" dest="${project.build.testOutputDirectory}/" />
 
                             </target>
                         </configuration>
@@ -191,13 +187,9 @@
                                 </goals>
                                 <configuration>
                                     <target>
-                                        <get src="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${phantomjs.version}-windows.zip"
-                                             dest="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-windows.zip"
-                                             verbose="false"
-                                             usetimestamp="true" />
+                                        <get src="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${phantomjs.version}-windows.zip" dest="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-windows.zip" verbose="false" usetimestamp="true" />
 
-                                        <unzip src="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-windows.zip"
-                                               dest="${project.build.testOutputDirectory}/" />
+                                        <unzip src="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-windows.zip" dest="${project.build.testOutputDirectory}/" />
 
                                         <chmod file="${phantomjs.path}" perm="u+x" />
 
@@ -238,13 +230,9 @@
                                 <configuration>
                                     <target>
 
-                                        <get src="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${phantomjs.version}-linux-x86_64.tar.bz2"
-                                             dest="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-x86_64.tar.bz2"
-                                             verbose="false"
-                                             usetimestamp="true" />
+                                        <get src="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${phantomjs.version}-linux-x86_64.tar.bz2" dest="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-x86_64.tar.bz2" verbose="false" usetimestamp="true" />
 
-                                        <untar src="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-x86_64.tar.bz2"
-                                               dest="${project.build.testOutputDirectory}/" compression="bzip2" />
+                                        <untar src="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-x86_64.tar.bz2" dest="${project.build.testOutputDirectory}/" compression="bzip2" />
 
                                         <chmod file="${phantomjs.path}" perm="u+x" />
 
@@ -285,13 +273,9 @@
                                 <configuration>
                                     <target>
 
-                                        <get src="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${phantomjs.version}-linux-i686.tar.bz2"
-                                             dest="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-i686.tar.bz2"
-                                             verbose="false"
-                                             usetimestamp="true" />
+                                        <get src="https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${phantomjs.version}-linux-i686.tar.bz2" dest="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-i686.tar.bz2" verbose="false" usetimestamp="true" />
 
-                                        <untar src="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-i686.tar.bz2"
-                                               dest="${project.build.testOutputDirectory}/" compression="bzip2" />
+                                        <untar src="${project.build.testOutputDirectory}/phantomjs-${phantomjs.version}-linux-i686.tar.bz2" dest="${project.build.testOutputDirectory}/" compression="bzip2" />
 
                                     </target>
                                 </configuration>
